@@ -18,8 +18,9 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./src",  // Define a pasta /src como base
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"]       // Mapeia @/ para qualquer coisa dentro de /src
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
