@@ -28,7 +28,15 @@ export async function POST(req: NextRequest) {
   }
 
   const { title, content, slug } = await req.json();
+
   await connectToDatabase();
+
+  // Verifica se já existe um post com o mesmo título
+  const existingPost = await Post.findOne({ title });
+  if (existingPost) {
+    return NextResponse.json({ error: 'Já existe um post com este título' }, { status: 400 });
+  }
+
   const post = new Post({ title, content, slug });
   await post.save();
   return NextResponse.json(post, { status: 201 });
